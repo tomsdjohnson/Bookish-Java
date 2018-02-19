@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title th:text="${'Bookish ' + book.title}"></title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+            <h1 th:text="${book.title}"></h1>
+            <p th:text="${'By ' + book.author}"></p>
+            <p th:text="${'ISBN ' + book.isbn}"></p>
+            <p th:text="${book.availableCopies + '/' + #lists.size(book.copies) + ' copies available.'}"></p>
+            <div th:unless="${#lists.isEmpty(book.borrowedCopies)}">
+                <h2>Borrowed Copies</h2>
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Borrower</th>
+                        <th>Due Date</th>
+                    </tr>
+                    <tr th:each="copy : ${book.borrowedCopies}">
+                        <td th:text="${copy.borrower.username}"></td>
+                        <td th:text="${copy.dueDate}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

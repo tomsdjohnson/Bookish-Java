@@ -1,6 +1,7 @@
 package org.softwire.training.bookish.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -8,6 +9,8 @@ public class User {
     private String username;
     private String password;
     private Boolean enabled;
+
+    private List<Copy> borrowedCopies;
 
     @Id
     public String getUsername() {
@@ -34,5 +37,14 @@ public class User {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    @OneToMany(mappedBy = "borrower")
+    public List<Copy> getBorrowedCopies() {
+        return borrowedCopies;
+    }
+
+    public void setBorrowedCopies(List<Copy> borrowedCopies) {
+        this.borrowedCopies = borrowedCopies;
     }
 }

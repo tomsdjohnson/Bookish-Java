@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Add books</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+            <h1>Add new books</h1>
+            <form class="form" th:action="@{/books/create}" method="post">
+                <label for="title">Title</label>
+                <input id="title" placeholder="Title" name="title"
+                       class="form-control" type="text"
+                       maxlength="255" required="required">
+                <label for="author">Author</label>
+                <input id="author" placeholder="Author" name="author"
+                       class="form-control" type="text"
+                       maxlength="255" required="required">
+                <label for="isbn">ISBN</label>
+                <input id="isbn" placeholder="ISBN" name="isbn"
+                       class="form-control" type="text"
+                       maxlength="14" required="required">
+                <label for="copies">Copies</label>
+                <input id="copies" placeholder="Copies" name="copies"
+                       class="form-control" type="number"
+                       min="1" required="required">
+                <button class="btn btn-success mt-2" type="submit">Add</button>
+            </form>
+        </div>
+    </body>
+</html>

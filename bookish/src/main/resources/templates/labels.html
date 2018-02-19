@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Labels</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+            <h1>Labels</h1>
+            <div th:each="copy : ${book.copies}" class="card m-2 p-2 text-center" style="width:250px">
+                <h2 class="card-title">
+                    <span th:text="${book.id}"></span>-<span th:text="${copy.id}"></span>
+                </h2>
+                <div class="card-text">Property of Softwire Training Library</div>
+            </div>
+        </div>
+    </body>
+</html>

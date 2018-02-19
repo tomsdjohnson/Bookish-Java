@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+    <head>
+        <title>Bookish - Catalogue</title>
+    </head>
+    <body>
+        <div layout:fragment="content" class="container body-content">
+            <h1>Catalogue</h1>
+            <div th:unless="${#strings.isEmpty(term)}" class="mb-2">
+                Search for <em th:text="${term}"></em>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Copies (Available)</th>
+                </tr>
+                <tr th:each="book : ${books}">
+                    <td><a th:href="@{'/books/' + ${book.id}}" th:text="${book.title}"></a></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.isbn}"></td>
+                    <td th:text="${#lists.size(book.copies) + ' (' + book.availableCopies + ')'}"></td>
+                </tr>
+            </table>
+            <nav th:unless="${pageCount == 1}" aria-label="page navigation">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${page == 1 ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/books(page=1,term=${term})}">Previous</a>
+                    </li>
+                    <li th:each="p : ${#numbers.sequence(1, pageCount)}" class="page-item" th:classappend="${p == page} ? 'active' : ''">
+                        <a class="page-link" th:href="@{/books(page=${p},term=${term})}" th:text="${p}"></a>
+                    </li>
+                    <li class="page-item" th:classappend="${page == pageCount ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/books(page=${page + 1},term=${term})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </body>
+</html>

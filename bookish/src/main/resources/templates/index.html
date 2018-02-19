@@ -12,7 +12,23 @@
                 <p class="lead">Welcome to the Bookish application</p>
             </div>
             <div>
-                <p>You are logged in as <span th:text="${user.username}"></span></p>
+                <div th:unless="${#lists.isEmpty(user.borrowedCopies)}">
+                    <h2>Borrowed Copies</h2>
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>ISBN</th>
+                            <th>Due Date</th>
+                        </tr>
+                        <tr th:each="copy : ${user.borrowedCopies}">
+                            <td><a th:href="@{'/books/' + ${copy.book.id}}" th:text="${copy.book.title}"></a></td>
+                            <td th:text="${copy.book.author}"></td>
+                            <td th:text="${copy.book.isbn}"></td>
+                            <td th:text="${copy.dueDate}"></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </body>
