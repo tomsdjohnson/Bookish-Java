@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Bookish - Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+            <a class="navbar-brand" th:href="@{/login}">Bookish</a>
+        </nav>
+        <div class="container body-content">
+            <h1>Login</h1>
+            <div class="alert alert-danger" th:if="${error != null}">Login Failed - Check your credentials</div>
+            <div class="alert alert-success" th:if="${logout != null}">Logout Successful</div>
+            <form class="form" th:action="@{/login}" method="post">
+                <label for="username">Username</label>
+                <input id="username" placeholder="Username" name="username"
+                       class="form-control" type="text"
+                       maxlength="255" required="required">
+                <label for="password">Password</label>
+                <input id="password" placeholder="Password" name="password"
+                       class="form-control" type="password"
+                       maxlength="255" required="required">
+                <button class="btn btn-primary mt-2" type="submit">Login</button>
+            </form>
+        </div>
+    </body>
+</html>
