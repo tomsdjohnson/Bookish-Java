@@ -1,22 +1,49 @@
 package org.softwire.training.bookish;
 
 public class Person {
-    private int id;
-    private String name;
+    private int PersonID;
+    private String Email;
+    private String Password;
+    private String FirstName;
+    private String Surname;
 
-    public int getId() {
-        return id;
+    public int getPersonID() {
+        return PersonID;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getPassword() {
+        return Password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public String getSurname() {
+        return Surname;
+    }
+
+    public void setPersonID(int personID) {
+        this.PersonID = personID;
+    }
+
+    public void setEmail(String email) {
+        this.Email = email;
+    }
+
+    public void setPassword(String password) {
+        this.Password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.FirstName = firstName;
+    }
+
+    public void setSurname(String surname) {
+        this.Surname = surname;
     }
 }
